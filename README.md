@@ -9,5 +9,5 @@ ATM
 
 
 ## Running
-    Go to releases and download textanalyzer.jar, then
+    Go to releases and download ATM-1.0-SNAPSHOT.jar then
     java -jar ATM-1.0-SNAPSHOT.jar
