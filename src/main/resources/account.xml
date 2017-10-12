@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClientBase>
+    <CashCard>
+        <id>123</id>
+        <pass>1243</pass>
+        <balance>2200</balance>
+    </CashCard>
+    <CashCard>
+        <id>122</id>
+        <pass>1343</pass>
+        <balance>1800</balance>
+    </CashCard>
+    <CashCard>
+        <id>132</id>
+        <pass>2243</pass>
+        <balance>1500</balance>
+    </CashCard>
+    <CashCard>
+        <id>12</id>
+        <pass>3243</pass>
+        <balance>2700</balance>
+    </CashCard>
+</ClientBase>
