@@ -18,7 +18,7 @@ class ATM {
     //пополнение
     private void deposit(CashCard card) {
         // проверка - пополнять можно минимум 100
-        if (isValidDeposoit()) {
+        if (isValidDeposit()) {
             //получить введенные данные
             int cash = Integer.parseInt(money);
 
@@ -52,7 +52,7 @@ class ATM {
     }
 
     //проверка суммы для пополнения
-    private boolean isValidDeposoit() {
+    private boolean isValidDeposit() {
         String message = "";
 
         //если не число
@@ -60,16 +60,15 @@ class ATM {
             message = "Input integer number";
 
             //если < 100
-        } else if (Double.parseDouble(money) < 5) {
+        } else if (Integer.parseInt(money) < 5) {
             message = "Minimum for deposit: 100";
 
             //если > 500
-        } else if (Double.parseDouble(money) > 500) {
+        } else if (Integer.parseInt(money) > 500) {
             message = "Maximum for deposit: 500";
 
-            // если не кратно 5, 10 или 20
-        } else if (Integer.parseInt(money) % 5 != 0 || Integer.parseInt(money) % 10 != 0 ||
-                Integer.parseInt(money) % 20 != 0) {
+            // если не кратно 5
+        } else if (Integer.parseInt(money) % 5 != 0) {
             message = "The amount must be a multiple of 10";
 
         } else {
@@ -97,10 +96,9 @@ class ATM {
         } else if (Integer.parseInt(money) > 500) {
             message = "Maximum for withdrawal: 500";
 
-            // если не кратно 5, 10 или 20
-        } else if (Integer.parseInt(money) % 5 != 0 || Integer.parseInt(money) % 10 != 0 ||
-                Integer.parseInt(money) % 20 != 0) {
-            message = "The amount must be a multiple of 10";
+            // если не кратно 5
+        } else if (Integer.parseInt(money) % 5 != 0) {
+            message = "The amount must be a multiple of 5";
 
             // недостаточно средств
         } else if (card.getBalance() - Integer.parseInt(money) < 0) {
