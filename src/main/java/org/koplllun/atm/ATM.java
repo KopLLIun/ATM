@@ -17,7 +17,7 @@ class ATM {
 
     //пополнение
     private void deposit(CashCard card) {
-        // проверка - пополнять можно минимум 100
+        // проверка - пополнять можно минимум 5
         if (isValidDeposit()) {
             //получить введенные данные
             int cash = Integer.parseInt(money);
@@ -59,9 +59,9 @@ class ATM {
         if (!isInteger(money)) {
             message = "Input integer number";
 
-            //если < 100
+            //если < 5
         } else if (Integer.parseInt(money) < 5) {
-            message = "Minimum for deposit: 100";
+            message = "Minimum for deposit: 5";
 
             //если > 500
         } else if (Integer.parseInt(money) > 500) {
@@ -69,7 +69,7 @@ class ATM {
 
             // если не кратно 5
         } else if (Integer.parseInt(money) % 5 != 0) {
-            message = "The amount must be a multiple of 10";
+            message = "The amount must be a multiple of 5";
 
         } else {
             return true;
@@ -88,11 +88,11 @@ class ATM {
         if (!isInteger(money)) {
             message = "Input integer number";
 
-            //если < 10
+            //если < 5
         } else if (Integer.parseInt(money) < 5) {
             message = "Minimum for withdrawal: 5";
 
-            //если > 250
+            //если > 500
         } else if (Integer.parseInt(money) > 500) {
             message = "Maximum for withdrawal: 500";
 
@@ -121,12 +121,11 @@ class ATM {
     }
 
     //инициализация данных
-    public void setUp() throws JAXBException {
+    public void setUp() {
         try {
             parser = new ReadXMLFile();
             file = getClass().getClassLoader().getResourceAsStream("account.xml");
             tmpFile = File.createTempFile("data", null);
-            //file = new File("src/main/resources/accounts.xml");
             clientBase = (ClientBase) parser.getObject(file, ClientBase.class);
 
         } catch (JAXBException e) {
@@ -162,8 +161,8 @@ class ATM {
 
             } else {
                 do {
-                    System.out.println("Operations:\n" + "1) Deposit\n" + "2) Withdraw\n" + "3) Display balance");
-                    System.out.println("Select operation or input word exit for end session");
+                    System.out.println("Operations:\n1) Deposit\n2) Withdraw\n3) Display balance\n" + 
+                                       "Select operation or input word exit for end session");
                     String operation = reader.readLine();
                     if (operation.equals("exit")) {
                         break;
@@ -192,21 +191,15 @@ class ATM {
     //проверка на корректность данных карты
     private boolean isValidData(String id, String pass) {
         boolean valid = true;
-        try {
-            for (int i = 0; i < clientBase.getClientBase().size(); i++) {
-                CashCard cashCard = clientBase.getClientBase().get(i);
-                valid = (cashCard.getId().equals(id) && cashCard.getPass().equals(pass));
-                if (valid) {
-                    cardNumber = i;
-                    break;
-                }
+        for (int i = 0; i < clientBase.getClientBase().size(); i++) {
+            CashCard cashCard = clientBase.getClientBase().get(i);
+            valid = (cashCard.getId().equals(id) && cashCard.getPass().equals(pass));
+            if (valid) {
+                cardNumber = i;
+                break;
             }
-            return valid;
-
-        } catch (NullPointerException e) {
-            System.out.println("Error: database not found");
-            return false;
         }
+        return valid;
     }
 
     //проверка строки на тип Integer
