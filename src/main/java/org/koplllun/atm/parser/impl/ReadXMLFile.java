@@ -25,18 +25,3 @@ public class ReadXMLFile implements Parser {
         marshaller.marshal(o, file);
     }
 }
-
-
-        /*SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser parser = factory.newSAXParser();
-
-
-        DefaultHandler handler = new DefaultHandler() {
-            boolean bid = false;
-            boolean pass = false;
-            boolean bbalance = false;
-
-            public void startElement(String uri, String localName, String qName, Attributes attributes) {
-
-            }
-        };*/
